@@ -79,5 +79,12 @@ def upload_file():
 
     return render_template("upload.html", username = session["username"]) # 如果是GET请求，渲染上传页面并传递用户名
 
+
+@app.route('/monkey', methods=['GET']) # 网站路径（upload的页面）
+def monkey():
+    return render_template("monkey.html")
+
+
+
 if __name__ == '__main__':
     app.run(debug=True) # 启动Flask应用，开启调试模式
