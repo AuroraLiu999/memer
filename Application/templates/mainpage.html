@@ -4,159 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MainPage</title>
-    <link rel="stylesheet" href="/">
     <style>
-        .mySlides {display:none;}
-    </style>
-</head>
-<body>
-    <div class="header-container">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='logo.jpg')}}"  height="60" width="60" alt="Logo">
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-            <a href="{{ url_for('monkey') }}">Monkey</a>
-            <a href="{{ url_for('chinese') }}">Chinese</a>
-            <a href="{{ url_for('panda') }}">Panda</a>
-
-            </div>
-        </div>
-
-    </div>
-    <div class="slideshow-container">
-
-        <!-- Full-width images with number text -->
-        <div class="mySlides">
-          <div class="numbertext">1 / 6</div>
-            <img src="{{ url_for('static', filename='meme2.jpg') }}" style="width:100%">
-        </div>
-      
-        <div class="mySlides">
-          <div class="numbertext">2 / 6</div>
-            <img src="{{ url_for('static', filename='meme4.jpg') }}" style="width:100%">
-        </div>
-      
-        <div class="mySlides">
-          <div class="numbertext">3 / 6</div>
-            <img src="{{ url_for('static', filename='meme8.jpg') }}" style="width:100%">
-        </div>
-      
-        <div class="mySlides">
-          <div class="numbertext">4 / 6</div>
-            <img src="{{ url_for('static', filename='meme16.jpg') }}" style="width:100%">
-        </div>
-      
-        <div class="mySlides">
-          <div class="numbertext">5 / 6</div>
-            <img src="{{ url_for('static', filename='meme32.jpg') }}" style="width:100%">
-        </div>
-      
-      
-        <!-- Next and previous buttons -->
-        <a class="prev" onclick="plusDivs(-1)">&#10094;</a>
-        <a class="next" onclick="plusDivs(1)">&#10095;</a>
-      
-        <!-- Image text -->
-        <div class="caption-container">
-          <p id="caption"></p>
-        </div>
-      
-        <!-- Thumbnail images -->
-<!--        <div class="row">-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">-->
-<!--          </div>-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">-->
-<!--          </div>-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">-->
-<!--          </div>-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">-->
-<!--          </div>-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">-->
-<!--          </div>-->
-<!--          <div class="column">-->
-<!--            <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">-->
-<!--          </div>-->
-<!--        </div>-->
-      </div>
-    <script>
+        /* Slideshow styling - initially hide all slides */
+        .mySlides {display: none;}
         
-        var slideIndex = 1;
-        showDivs(slideIndex);
-
-        function plusDivs(n) {
-            showDivs(slideIndex += n);
-        }
-
-        function currentDiv(n) {
-            showDivs(slideIndex = n);
-        }
-
-        function showDivs(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("demo");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" w3-white", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " w3-white";
-        }
-    </script>
-
-    <style>
-        /* 基本样式 */
-       body {
+        /* Base styling for the entire page */
+        body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: AliceBlue;
         }
 
-        .slideshow-container {
-            display: flex;
-            justify-content: center;
+        /* Main Content Container */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        /* Grid layout */
+        .grid-container {
+            display: grid;
+            grid-template-rows: auto auto;
+            width: 100%;
+        }
+
+        /* Header styling */
+        .header-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            height: 100px; /* Adjust height as needed */
-            background-color: #f8f8f8; /* Optional: background color */
-            border-bottom: 1px solid #ddd; /* Optional: border */
+            padding: 10px;
+            background-color: #f8f8f8;
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            height: 100px;
         }
 
-        /* 下拉菜单容器 */
+        /* Logo container styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: start;
+        }
+
+        /* Project name styling */
+        .project_name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            font-family: Papyrus
+        }
+
+        /* Dropdown styling */
         .dropdown {
             position: relative;
             display: inline-block;
+            justify-self: center;
+        }
+        
+        /* Main content area background styling */
+        .content-container{
+            background: linear-gradient(
+            135deg,
+            #d4f1f4 0%,     /* 极浅蓝绿（类似水色） */
+            #a4d4db 30%,    /* 主色调（你指定的颜色） */
+            #89c9d1 60%,    /* 稍深的蓝绿 */
+            #e2f6fa 100%    /* 接近白色的淡蓝绿 */
+        );
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
         }
 
-        /* 下拉按钮样式 */
+        /* Dropdown button styling */
         .dropbtn {
-            background-color: #4CAF50;
+            background-color: #6495ED;
             color: white;
             padding: 10px;
             font-size: 16px;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
         }
 
-        /* 下拉内容（默认隐藏） */
+        /* Dropdown content styling */
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: #bac9f0;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
+            border-radius: 4px;
         }
 
-        /* 下拉菜单中的链接 */
+        /* Dropdown links styling */
         .dropdown-content a {
             color: black;
             padding: 12px 16px;
@@ -164,27 +120,266 @@
             display: block;
         }
 
-        /* 鼠标悬停时改变链接颜色 */
+        /* Dropdown hover effects */
         .dropdown-content a:hover {
             background-color: #f1f1f1;
         }
 
-        /* 显示下拉菜单 */
+        /* Show dropdown on hover */
         .dropdown:hover .dropdown-content {
             display: block;
         }
 
-        /* 鼠标悬停时改变按钮背景颜色 */
+        /* Dropdown button hover effect */
         .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+            background-color: #4265bf;
         }
 
+        /* Profile button container */
+        .profile-container {
+            justify-self: end;
+            padding-right: 40px;
+        }
 
+        /* Profile button styling */
+        .profilebtn {
+            background-color: #6495ED;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Slideshow heading styling */
+        .slideshow-heading {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            color: #000;
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: Lucida Handwriting
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            max-width: 400px; /* Changed from 500px to 400px */
+            margin: 0 auto 30px auto;
+            text-align: center;    
+        }
+
+        /* Slideshow images */
+        .slideshow-container img {
+            width: 100%;
+            height: 50%; /* Changed from 60% to 50% */
+            margin: 0 auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Previous button styling */
+        .prev {
+            left: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* Next button styling */
+        .next {
+            right: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px 0 0 3px;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* Arrow hover effects */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Dot navigation container*/
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Individual dot styling */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Active and hover dot states */
+        .active, .dot:hover {
+            background-color: #717171;
+        }
     </style>
 </head>
+<body>
+    <!-- Main content container -->
+    <div class="main-content">
+        <div class="grid-container">
+            <!-- Header Section -->
+            <div class="header-container">
+                <!-- Logo and project name -->
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='newlogo.png')}}" height="100" width="100" alt="Logo">
+                    <div class="project_name">
+                        Memer
+                    </div>
+                </div>
 
+                <!-- Dropdown menu with navigation links -->
+                <div class="dropdown">
+                    <button class="dropbtn">Dropdown</button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('monkey') }}">Monkey</a>
+                        <a href="{{ url_for('chinese') }}">Chinese</a>
+                        <a href="{{ url_for('dog') }}">Dog</a>
+                        <a href="{{ url_for('panda') }}">Panda</a>
+                        <a href="{{ url_for('bear') }}">Bear</a>
+                        <a href="{{ url_for('cat') }}">Cat</a>
+                        <a href="{{ url_for('chat') }}">Chat</a>
+                        <a href="{{ url_for('emotion') }}">Emotion</a>
+                        <a href="{{ url_for('trump') }}">Trump</a>
+                    </div>
+                </div>
 
+                <!-- Profile button -->
+                <div class="profile-container">
+                    <form action="{{ url_for('user_profile') }}" methods="POST">
+                        <button class="profilebtn" type="submit">Profile</button>
+                    </form>
+                </div>
+        </div>
 
+        <!-- Main content area with slideshow -->
+        <div class="content-container">
+            <!-- Slideshow heading -->
+            <h1 class="slideshow-heading">Top Memes of Today</h1>
+            
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                
+                <!-- Slide 1 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme2.jpg') }}">
+                </div>
+            
+                <!-- Slide 2 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme4.jpg') }}">
+                </div>
+            
+                <!-- Slide 3 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme8.jpg') }}">
+                </div>
+            
+                <!-- Slide 4 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme16.jpg') }}">
+                </div>
+            
+                <!-- Slide 5 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme30.jpg') }}">
+                </div>
+            
+                <!-- Slide 6 -->
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename='meme6.jpg') }}">
+                </div>
 
+                <!-- Navigation arrows -->
+                <a class="prev" onclick="plusDivs(-1)">&#10094;</a>
+                <a class="next" onclick="plusDivs(1)">&#10095;</a>
+            </div>
+
+                <!-- Dot navigation indicators -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentDiv(1)"></span> 
+                    <span class="dot" onclick="currentDiv(2)"></span> 
+                    <span class="dot" onclick="currentDiv(3)"></span> 
+                    <span class="dot" onclick="currentDiv(4)"></span> 
+                    <span class="dot" onclick="currentDiv(5)"></span> 
+                    <span class="dot" onclick="currentDiv(6)"></span> 
+                </div>
+            </div>
+    </div>
+
+    <!-- JavaScript for slideshow functionality -->
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        // Function to navigate to next/previous slide
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+        
+        // Function to jump to specific slide
+        function currentDiv(n) {
+            showDivs(slideIndex = n);
+        }
+        
+        // Main function to control slideshow display
+        function showDivs(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            
+            // Handle wrap-around for slides
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            // Hide all slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            // Remove active class from all dots
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            // Show current slide and activate corresponding dot
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
 </body>
 </html>

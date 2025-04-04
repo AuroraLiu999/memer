@@ -3,19 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
+    <title>Sign Up - Memer</title>
+    <style>
+        /* Body styling */
+        body {
+            background: linear-gradient(
+                135deg,
+                #d4f1f4 0%,
+                #a4d4db 30%,
+                #89c9d1 60%,
+                #e2f6fa 100%
+            );
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main signup container */
+        .signup-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 400px;
+            max-width: 90%;
+            margin: 20px;
+        }
+
+        /* Header section */
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Logo container styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Logo image styling */
+        .logo img {
+            height: 80px;
+            width: 80px;
+        }
+
+        /* Project name styling */
+        .project_name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            font-family: Papyrus
+        }
+
+        /* Form styling */
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Form group styles */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6495ED;
+            box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        /* Login link styles */
+        .login-link {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .login-link a {
+            color: #6495ED;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: #4265bf;
+            text-decoration: underline;
+        }
+
+        /* Button styles */
+        .signup-btn {
+            background-color: #6495ED;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .signup-btn:hover {
+            background-color: #4265bf;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 30px 20px;
+            }
+            
+            .logo img {
+                height: 60px;
+                width: 60px;
+            }
+            
+            .project_name {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <form method="POST">
-        <label for="username">UserName: </label>
-        <input type="text" placeholder="Enter Username" id="username" name="username" required>
-        <br>
-        <label for="password">UserPassword: </label>
-        <input type="text" placeholder="Enter Password" id="password" name="password" required>
-        <br>
-        <label for="confirmpassword">ConfirmPassword: </label>
-        <input type="text" placeholder="Confirm Password" id="password" name="confirmpassword" required>
-        <button type=""submit>Signup</button>
-    </form>>
+    <!-- Main signup container -->
+    <div class="signup-container">
+        <div class="signup-header">
+            <!-- Logo section with image and project name -->
+            <div class="logo">
+                <!-- Dynamic logo URL using Flask's url_for -->
+                <img src="{{ url_for('static', filename='newlogo.png')}}" alt="Memer Logo">
+                <div class="project_name">Memer</div>
+            </div>
+            <h2>Create Your Account</h2>
+        </div>
+        
+        <!-- Signup form with POST method -->
+        <form method="POST" class="signup-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Enter your username" id="username" name="username" required>
+            </div>
+            
+            <!-- Password input field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter your password" id="password" name="password" required>
+            </div>
+            
+            <!-- Confirm password input field -->
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" placeholder="Confirm your password" id="confirmpassword" name="confirmpassword" required>
+            </div>
+            
+            <!-- Login link - uses Flask's url_for to generate the signup page URL -->
+            <div class="login-link">
+                <a href="{{ url_for('login_page') }}">Already have an account? Login</a>
+            </div>
+            
+            <!-- Submit button -->
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+    </div>
 </body>
 </html>

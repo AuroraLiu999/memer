@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMeme</title>
+    <style>
+        /* Base styling for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Header styles */
+        .header-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            height: 100px;
+        }
+
+        /* Logo container styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: start;
+        }
+
+        /* Project name styling */
+        .project_name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            font-family: Papyrus
+        }
+
+        /* Profile button styles */
+        .profile-container {
+            justify-self: end;
+            padding-right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Profile button styling */
+        .profilebtn {
+            background-color: #6495ED;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Profile button hover */
+        .profilebtn:hover {
+            background-color: #4169E1;
+        }
+
+      /* Home link image styles */
+        .home-link {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        /* Home link image hover */
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        /* Profile title */
+        .profile-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 30px 0;
+            color: #333;
+            font-family: "Lucida Handwriting", "Lucida Console", cursive;
+        }
+
+        /* Meme container */
+        .meme-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Meme item */
+        .meme-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+
+        /* Meme item hover */
+        .meme-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Meme image */
+        .meme-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Meme info */
+        .meme-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Meme name */
+        .meme-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Meme time */
+        .meme-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 5px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Upload button */
+        .upload-btn {
+            background-color: #6495ED;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        /* Upload button hover */
+        .upload-btn:hover {
+            background-color: #4169E1;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Adjust grid layout for smaller screens */
+            .meme-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+                gap: 15px; 
+                padding: 15px; 
+            }
+            
+            /* Reduce title size on mobile */
+            .profile-title {
+                font-size: 2rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header section -->
+    <div class="header-container">
+        <!-- Logo and project name -->
+        <div class="logo">
+            <!-- Dynamic logo using Flask's url_for -->
+            <img src="{{ url_for('static', filename='newlogo.png')}}" height="80" width="80" alt="Logo">
+            <div class="project_name">Memer</div>
+        </div>
+
+        <!-- Profile navigation container -->
+        <div class="profile-container">
+            <!-- Home button with icon -->
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='newmainpage3.png') }}" alt="Home" class="home-link">
+            </a>
+            <!-- Profile button form -->
+            <form action="{{ url_for('user_profile') }}" method="POST">
+                <button class="profilebtn" type="submit">Profile</button>
+            </form>
+        </div>
+    </div>
+  
+<!-- Profile title with dynamic username -->
+<div class="profile-title">{{ username }}'s Meme</div>
+
+<!-- Flash message display (Flask integration) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<!-- Main content section -->
+<div>
+    <!-- Upload button form -->
+    <form action="{{ url_for('upload_file') }}" method="GET">
+        <button class="upload-btn" type="submit">Upload New Meme</button>
+    </form>
+    
+    <!-- Meme gallery container -->
+    <div class="meme-container">
+        {% if images %}
+            <!-- Loop through user's memes -->
+            {% for image in images %}
+            <div class="meme-item">
+                <!-- Dynamic meme image using Flask's url_for -->
+                <img src="{{ url_for('static', filename='uploads/' + image.path) }}" 
+                     alt="{{ image.name }}" 
+                     class="meme-image">
+                <div class="meme-info">
+                    <!-- Meme name with hover tooltip -->
+                    <div class="meme-name" title="{{ image.name }}">{{ image.name }}</div>
+                    <!-- Upload time -->
+                    <div class="meme-time">{{ image.upload_time }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <!-- Empty state message when no memes exist -->
+            <div class="empty-state">
+                <p>You haven't uploaded any meme</p>
+                <p>Click "Upload New Meme" button to get started!</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

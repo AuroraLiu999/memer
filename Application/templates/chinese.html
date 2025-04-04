@@ -4,113 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chinese</title>
+    <style>
+        /* Slideshow styling - initially hide all slides */
+        .mySlides {display: none;}
+      
+        /* Base styling for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Grid layout */
+        .grid-container {
+            display: grid;
+            grid-template-rows: auto auto;
+            width: 100%;
+        }
+
+        /* Header styling */
+        .header-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Changed to match mainpage */
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            height: 100px;
+        }
+
+        /* Logo container styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: start; /* Added to match mainpage */
+        }
+
+        /* Project name styling */
+        .project_name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            font-family: Papyrus
+        }
+        
+        /* Dropdown styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            justify-self: center; /* Added to match mainpage */
+        }
+
+        /* Dropdown button styling */
+        .dropbtn {
+            background-color: #6495ED;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Dropdown content styling */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #bac9f0;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        /* Dropdown links styling */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Dropdown hover effects */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Dropdown button hover effect */
+        .dropdown:hover .dropbtn {
+            background-color: #4265bf;
+        }
+
+        /* Profile container */
+        .profile-container {
+            justify-self: end;
+            padding-right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Profile button styling */
+        .profilebtn {
+            background-color: #6495ED;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Home link image styling */
+        .home-link {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        /* Home link hover styling */
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        /* Meme container styling */
+        .meme-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Meme item styling */
+        .meme-item {
+            width: calc(33.333% - 20px); /* 3 items per row with gap */
+            max-width: 260px;
+            border: 2px solid #ddd;
+            border-radius: 15px; /* 圆角 */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Meme item hover */
+        .meme-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Meme item image */
+        .meme-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 900px) {
+            .meme-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .meme-item {
+                width: 100%;
+            }
+            
+            .header-container {
+                grid-template-columns: auto 1fr auto; /* Simplified for mobile */
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .project_name {
+                font-size: 18px;
+            }
+        }
+
+        /* Banner text */
+        .banner-text {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+            width: 100%;
+            font-family: Lucida Handwriting
+        }
+    </style>
 </head>
 <body>
-    <div class="flex-container">
-                <div class="slideshow">
-
-            <img class="mySlides" src="../uploads/meme1.jpg">
-            <img class="mySlides" src="../uploads/meme38.jpg">
-            <img class="mySlides" src="../uploads/meme18.jpg">
-            <img class="mySlides" src="../uploads/meme15.jpg">
-            <img class="mySlides" src="../uploads/meme43.jpg">
-            <div class="Meme" style="width:100%">
-            <div class="Meme-left -hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-            <div class="Meme-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-            <span class="Meme-badge demo w3-border" onclick="currentDiv(1)"></span>
-            <span class="Meme-badge demo w3-border" onclick="currentDiv(2)"></span>
-            <span class="Meme-badge demo w3-border" onclick="currentDiv(3)"></span>
-            <span class="Meme-badge demo w3-border" onclick="currentDiv(4)"></span>
-            <span class="Meme-badge demo w3-border" onclick="currentDiv(5)"></span>
+    <div class="grid-container">
+        <!-- Header container -->
+        <div class="header-container">
+            <!-- Logo and project name -->
+            <div class="logo">
+                <img src="{{ url_for('static', filename='newlogo.png')}}" height="100" width="100" alt="Logo">
+                <div class="project_name">
+                    Memer
+                </div>
             </div>
-        </div><img class="flex-item" <div class="container">
 
-  <!-- Full-width images with number text -->
-  <div class="mySlides">
-    <div class="numbertext">1 / 6</div>
-      <img src="img_woods_wide.jpg" style="width:100%">
-  </div>
+            <!-- Dropdown menu with navigation links -->
+            <div class="dropdown">
+                <button class="dropbtn">Dropdown</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('monkey') }}">Monkey</a>
+                    <a href="{{ url_for('chinese') }}">Chinese</a>
+                    <a href="{{ url_for('dog') }}">Dog</a>
+                    <a href="{{ url_for('panda') }}">Panda</a>
+                    <a href="{{ url_for('bear') }}">Bear</a>
+                    <a href="{{ url_for('cat') }}">Cat</a>
+                    <a href="{{ url_for('chat') }}">Chat</a>
+                    <a href="{{ url_for('emotion') }}">Emotion</a>
+                    <a href="{{ url_for('trump') }}">Trump</a>
+                </div>
+            </div>
 
-  <div class="mySlides">
-    <div class="numbertext">2 / 6</div>
-      <img src="img_5terre_wide.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">3 / 6</div>
-      <img src="img_mountains_wide.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">4 / 6</div>
-      <img src="img_lights_wide.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">5 / 6</div>
-      <img src="img_nature_wide.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides">
-    <div class="numbertext">6 / 6</div>
-      <img src="img_snow_wide.jpg" style="width:100%">
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-  <!-- Image text -->
-  <div class="caption-container">
-    <p id="caption"></p>
-  </div>
-
-  <!-- Thumbnail images -->
-  <div class="row">
-    <div class="column">
-      <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+            <!-- Profile container -->
+            <div class="profile-container">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='newmainpage3.png') }}" alt="Home" class="home-link">
+                </a>
+                <form action="{{ url_for('user_profile') }}" method="POST">
+                    <button class="profilebtn" type="submit">Profile</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Main content area with memes -->
+        <div class="grid-container">
+            <!-- Banner text -->
+            <div class="banner-text">Come and see all the CHINESE MEMES!</div>
+            <!-- Meme container -->
+            <div class="meme-container">
+                <div class="meme-item">
+                    <img src="{{ url_for('static', filename='meme1.jpg') }}" alt="Meme 1">
+                </div>
+                <div class="meme-item">
+                    <img src="{{ url_for('static', filename='meme2.jpg') }}" alt="Meme 2">
+                </div>
+                <div class="meme-item">
+                    <img src="{{ url_for('static', filename='meme4.jpg') }}" alt="Meme 3">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="column">
-      <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-    </div>
-  </div>
-</div>
-        <img class="flex-item" src="{{ url_for('static', filename='meme1.jpg') }}" height="260" width="260"></img>
-        <img class="flex-item" src="{{ url_for('static', filename='meme2.jpg') }}" height="260" width="260"></img>
-        <img class="flex-item" src="{{ url_for('static', filename='meme4.jpg') }}" height="260" width="260"></img>
-    </div>
-    <style>
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      
-      .flex-item-left {
-        flex: 50%;
-      }
-      
-      .flex-item-right {
-        flex: 50%;
-      }
-      
-      /* Responsive layout - makes a one column layout instead of a two-column layout */
-      @media (max-width: 800px) {
-        .flex-item-right, .flex-item-left {
-          flex: 100%;
-        }
-      }
-    </style>
 </body>
 </html>
